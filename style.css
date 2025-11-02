@@ -184,6 +184,53 @@ a:hover {
 .nav-cta {
     padding: 10px 24px;
 }
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+}
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--color-dark);
+    margin: 3px 0;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+.logo-img {
+    height: 60px;
+    max-width: 250px;
+    object-fit: contain;
+}
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 98;
+}
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
 
 /* --- Hero Section --- */
 .hero {
@@ -726,10 +773,56 @@ a:hover {
 /* --- Responsive Media Queries --- */
 @media (max-width: 992px) {
     .navbar .container {
-        flex-wrap: wrap;
+        position: relative;
+    }
+    .hamburger {
+        display: flex;
     }
     .nav-menu {
-        display: none; /* Simplification for this example. A real site needs a hamburger menu. */
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 249, 255, 0.92));
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        flex-direction: column;
+        padding: 2rem 0;
+        gap: 0;
+        box-shadow: -2px 0 30px rgba(0, 0, 0, 0.15);
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 99;
+        overflow-y: auto;
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .nav-menu.active {
+        left: 0;
+    }
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        margin: 0.3rem 0;
+    }
+    .nav-menu a {
+        display: block;
+        padding: 1.2rem 2rem;
+        font-size: 1.2rem;
+        border-bottom: 1px solid rgba(229, 231, 235, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    .nav-menu a:hover {
+        background: rgba(16, 185, 129, 0.08);
+        transform: translateX(5px);
+    }
+    .nav-menu a.active {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(59, 130, 246, 0.12));
+        font-weight: 600;
+    }
+    .nav-menu a::after {
+        display: none;
     }
     .nav-cta {
         display: none;
@@ -746,15 +839,18 @@ a:hover {
 
 @media (max-width: 768px) {
     body {
-        padding-top: 80px;
+        padding-top: 70px;
     }
     .navbar {
-        height: 80px;
+        height: 70px;
+    }
+    .nav-menu {
+        top: 70px;
+        height: calc(100vh - 70px);
     }
     .logo-img {
-        height: 50px;
-        max-width: 200px;
-        padding: 8px 0;
+        height: 45px;
+        max-width: 180px;
     }
     h1 { font-size: 2.2rem; }
     h2 { font-size: 1.8rem; }
@@ -763,6 +859,8 @@ a:hover {
     }
     .hero h1 { font-size: 2rem; }
     .hero .subtitle { font-size: 1.1rem; }
+    .page-header h1 { font-size: 2rem; }
+    .page-header p { font-size: 1rem; }
     .steps-grid, .services-grid, .features-grid, .values-grid {
         grid-template-columns: 1fr;
     }
@@ -779,8 +877,15 @@ a:hover {
         align-items: center;
         text-align: center;
     }
+    .services-list .service-item {
+        flex-direction: column;
+        text-align: center;
+    }
     .footer-grid {
         grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-col ul {
         text-align: center;
     }
     .social-icons {
@@ -788,5 +893,41 @@ a:hover {
     }
     .section-subtitle {
         font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 65px;
+    }
+    .navbar {
+        height: 65px;
+    }
+    .nav-menu {
+        top: 65px;
+        height: calc(100vh - 65px);
+    }
+    .logo-img {
+        height: 40px;
+        max-width: 160px;
+    }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+    .hero h1 { font-size: 1.8rem; }
+    .hero .subtitle { font-size: 1rem; }
+    .page-header h1 { font-size: 1.8rem; }
+    .page-header p { font-size: 0.95rem; }
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+    .step-icon, .service-card i, .feature-item i {
+        font-size: 2.5rem;
+        width: 60px;
+        height: 60px;
+    }
+    .page-content {
+        padding: 60px 20px;
     }
 }

@@ -12,11 +12,18 @@
 </head>
 <body>
 
+    <div class="menu-overlay"></div>
+    
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="nav-logo">
                 <img src="quicktrash-logo.png" alt="Quick Trash Logo" class="logo-img">
             </a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="nav-menu">
                 <li><a href="services.html">Services</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
@@ -38,46 +45,46 @@
         <section class="container page-content">
             
             <h2>Our Story</h2>
-            <p>Quick Trash was founded to solve a common problem: needing to dispose of trash, bulk items, or project debris outside of regular collection schedules[cite: 13, 308]. Traditional services are often rigid and inconvenient[cite: 59]. We leverage technology to connect people needing immediate trash removal with a network of local, independent contractors, providing a simple, flexible, and fast solution[cite: 7, 302].</p>
+            <p>Quick Trash was founded to solve a common problem: needing to dispose of trash, bulk items, or project debris outside of regular collection schedules. Traditional services are often rigid and inconvenient. We leverage technology to connect people needing immediate trash removal with a network of local, independent contractors, providing a simple, flexible, and fast solution.</p>
             
             <div class="mission-vision">
                 <div class="mission-card">
                     <h3>Our Mission</h3>
-                    <p>"To revolutionize trash pick-up by providing an immediate, reliable, and customer-centric on-demand service, ensuring convenient and responsible waste disposal for everyone." [cite: 11, 306]</p>
+                    <p>"To revolutionize trash pick-up by providing an immediate, reliable, and customer-centric on-demand service, ensuring convenient and responsible waste disposal for everyone."</p>
                 </div>
                 <div class="mission-card">
                     <h3>Our Vision</h3>
-                    <p>"To be the leading on-demand trash pick-up service in Georgia, recognized for our speed, flexibility, and commitment to customer satisfaction and environmental responsibility, with plans for future expansion." [cite: 12, 307]</p>
+                    <p>"To be the leading on-demand trash pick-up service in Georgia, recognized for our speed, flexibility, and commitment to customer satisfaction and environmental responsibility, with plans for future expansion."</p>
                 </div>
             </div>
 
             <hr class="divider">
 
-            <h2>Our Core Values [cite: 19, 314]</h2>
+            <h2>Our Core Values</h2>
             <div class="values-grid">
                 <div class="value-item">
                     <i class="fas fa-heart"></i>
-                    <h3>Customer Focus [cite: 20]</h3>
+                    <h3>Customer Focus</h3>
                     <p>Prioritizing the convenience and satisfaction of our users.</p>
                 </div>
                 <div class="value-item">
                     <i class="fas fa-shipping-fast"></i>
-                    <h3>Timeliness [cite: 21]</h3>
+                    <h3>Timeliness</h3>
                     <p>Delivering prompt and efficient service.</p>
                 </div>
                 <div class="value-item">
                     <i class="fas fa-shield-alt"></i>
-                    <h3>Reliability [cite: 23]</h3>
+                    <h3>Reliability</h3>
                     <p>Ensuring consistent and dependable trash pick-up.</p>
                 </div>
                 <div class="value-item">
                     <i class="fas fa-globe-americas"></i>
-                    <h3>Responsibility [cite: 24]</h3>
+                    <h3>Responsibility</h3>
                     <p>Committing to legal and environmentally sound waste disposal practices.</p>
                 </div>
                 <div class="value-item">
                     <i class="fas fa-lightbulb"></i>
-                    <h3>Innovation [cite: 25]</h3>
+                    <h3>Innovation</h3>
                     <p>Utilizing technology to streamline and enhance the customer experience.</p>
                 </div>
             </div>
@@ -137,6 +144,38 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking on overlay
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    </script>
 
 </body>
 </html>

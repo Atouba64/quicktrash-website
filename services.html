@@ -12,11 +12,18 @@
 </head>
 <body>
 
+    <div class="menu-overlay"></div>
+    
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="nav-logo">
                 <img src="quicktrash-logo.png" alt="Quick Trash Logo" class="logo-img">
             </a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="nav-menu">
                 <li><a href="services.html" class="active">Services</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
@@ -30,7 +37,7 @@
     <header class="page-header">
         <div class="container">
             <h1>What We Haul</h1>
-            <p>We pick up most non-hazardous items for your home or business[cite: 28].</p>
+            <p>We pick up most non-hazardous items for your home or business.</p>
         </div>
     </header>
 
@@ -38,48 +45,48 @@
         <section class="container page-content">
             
             <h2>What We Accept</h2>
-            <p>Our contractors are equipped to handle a wide range of items. Use the app to specify your load size[cite: 37].</p>
+            <p>Our contractors are equipped to handle a wide range of items. Use the app to specify your load size.</p>
 
             <div class="services-list">
                 <div class="service-item">
                     <i class="fas fa-trash-alt"></i>
                     <div>
-                        <h3>Household Waste [cite: 29]</h3>
+                        <h3>Household Waste</h3>
                         <p>Standard garbage bags, food waste, and general refuse that doesn't fit in your weekly bin.</p>
                     </div>
                 </div>
                 <div class="service-item">
                     <i class="fas fa-couch"></i>
                     <div>
-                        <h3>Bulk Items [cite: 30]</h3>
+                        <h3>Bulk Items</h3>
                         <p>Old furniture (sofas, chairs, tables), mattresses, box springs, and appliances (non-Freon).</p>
                     </div>
                 </div>
                 <div class="service-item">
                     <i class="fas fa-tv"></i>
                     <div>
-                        <h3>Electronics (E-Waste) [cite: 30]</h3>
+                        <h3>Electronics (E-Waste)</h3>
                         <p>Televisions, computers, monitors, and other electronic items for proper disposal.</p>
                     </div>
                 </div>
                 <div class="service-item">
                     <i class="fas fa-leaf"></i>
                     <div>
-                        <h3>Yard Waste [cite: 31]</h3>
+                        <h3>Yard Waste</h3>
                         <p>Bagged or bundled branches, leaves, grass clippings, and other landscaping debris.</p>
                     </div>
                 </div>
                 <div class="service-item">
                     <i class="fas fa-hard-hat"></i>
                     <div>
-                        <h3>Small Construction Debris [cite: 32]</h3>
+                        <h3>Small Construction Debris</h3>
                         <p>For small-scale DIY or renovation projects. This includes wood scraps, drywall pieces, and old fixtures.</p>
                     </div>
                 </div>
                 <div class="service-item">
                     <i class="fas fa-box-open"></i>
                     <div>
-                        <h3>Recyclables [cite: 33]</h3>
+                        <h3>Recyclables</h3>
                         <p>Separated paper, cardboard, plastics, and glass, as per local guidelines.</p>
                     </div>
                 </div>
@@ -89,12 +96,12 @@
 
             <div class="prohibited-items">
                 <h2>What We Cannot Accept</h2>
-                <p>For the safety of our contractors and to comply with state and local regulations, we cannot accept the following items[cite: 41, 42]:</p>
+                <p>For the safety of our contractors and to comply with state and local regulations, we cannot accept the following items:</p>
                 <ul>
-                    <li><i class="fas fa-exclamation-triangle"></i> Hazardous Materials (chemicals, paint, asbestos, solvents, etc.) [cite: 41]</li>
-                    <li><i class="fas fa-exclamation-triangle"></i> Medical Waste (sharps, biohazards) [cite: 41]</li>
-                    <li><i class="fas fa-exclamation-triangle"></i> Flammable or Explosive Materials [cite: 41]</li>
-                    <li><i class="fas fa-exclamation-triangle"></i> Any other items restricted by local or state law [cite: 41]</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Hazardous Materials (chemicals, paint, asbestos, solvents, etc.)</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Medical Waste (sharps, biohazards)</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Flammable or Explosive Materials</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Any other items restricted by local or state law</li>
                 </ul>
             </div>
 
@@ -153,6 +160,38 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking on overlay
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    </script>
 
 </body>
 </html>

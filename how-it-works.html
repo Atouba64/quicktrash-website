@@ -12,11 +12,18 @@
 </head>
 <body>
 
+    <div class="menu-overlay"></div>
+    
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="nav-logo">
                 <img src="quicktrash-logo.png" alt="Quick Trash Logo" class="logo-img">
             </a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="nav-menu">
                 <li><a href="services.html">Services</a></li>
                 <li><a href="how-it-works.html" class="active">How It Works</a></li>
@@ -44,7 +51,7 @@
                     <div class="how-step-icon"><i class="fas fa-mobile-alt"></i></div>
                     <div class="how-step-text">
                         <h3>Step 1: Request Your Pickup</h3>
-                        <p>Open the Quick Trash app and select "New Pickup." You'll be guided to specify the type of trash (household, bulk, etc.) and the approximate size or quantity. You can also add a photo to help the contractor[cite: 15, 134, 136].</p>
+                        <p>Open the Quick Trash app and select "New Pickup." You'll be guided to specify the type of trash (household, bulk, etc.) and the approximate size or quantity. You can also add a photo to help the contractor.</p>
                     </div>
                 </div>
                 
@@ -52,7 +59,7 @@
                     <div class="how-step-icon"><i class="fas fa-dollar-sign"></i></div>
                     <div class="how-step-text">
                         <h3>Step 2: Get Upfront Price & Pay</h3>
-                        <p>Based on your selections, our app will instantly provide a transparent, upfront price for the service. Confirm the details, and pay securely in the app to place your order. No haggling, no surprises[cite: 38, 137, 170].</p>
+                        <p>Based on your selections, our app will instantly provide a transparent, upfront price for the service. Confirm the details, and pay securely in the app to place your order. No haggling, no surprises.</p>
                     </div>
                 </div>
 
@@ -60,7 +67,7 @@
                     <div class="how-step-icon"><i class="fas fa-truck-pickup"></i></div>
                     <div class="how-step-text">
                         <h3>Step 3: Contractor Accepts & Arrives</h3>
-                        <p>Your order is broadcast to the nearest available, vetted independent contractor[cite: 16, 171]. They will accept the job, and you'll receive a notification. We will aim to add real-time tracking in a future update[cite: 39, 140].</p>
+                        <p>Your order is broadcast to the nearest available, vetted independent contractor. They will accept the job, and you'll receive a notification. We will aim to add real-time tracking in a future update.</p>
                     </div>
                 </div>
 
@@ -68,7 +75,7 @@
                     <div class="how-step-icon"><i class="fas fa-check-circle"></i></div>
                     <div class="how-step-text">
                         <h3>Step 4: Pickup & Responsible Disposal</h3>
-                        <p>Your contractor arrives, loads the trash, and takes a photo to confirm the pickup is complete[cite: 175]. They then transport the waste to one of our licensed partner facilities (like Waste Management or Republic Services) for legal and environmentally sound disposal[cite: 17, 40, 176].</p>
+                        <p>Your contractor arrives, loads the trash, and takes a photo to confirm the pickup is complete. They then transport the waste to one of our licensed partner facilities (like Waste Management or Republic Services) for legal and environmentally sound disposal.</p>
                     </div>
                 </div>
             </div>
@@ -128,6 +135,38 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking on overlay
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    </script>
 
 </body>
 </html>
