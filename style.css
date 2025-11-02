@@ -16,7 +16,7 @@
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
-    padding-top: 80px; /* Offset for fixed navbar */
+    padding-top: 100px; /* Offset for fixed navbar */
     color: var(--color-grey);
     background-color: var(--color-white);
     line-height: 1.7;
@@ -129,7 +129,7 @@ a:hover {
     left: 0;
     width: 100%;
     z-index: 100;
-    height: 80px;
+    height: 100px;
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 .navbar .container {
@@ -139,13 +139,19 @@ a:hover {
     height: 100%;
 }
 .nav-logo {
-    font-size: 1.6rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--color-green), var(--color-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.logo-img {
+    height: 80px;
+    width: auto;
+    max-width: 280px;
+    display: block;
+    object-fit: contain;
+    background: transparent !important;
+    mix-blend-mode: normal;
+    padding: 10px 0;
 }
 .nav-menu {
     list-style: none;
@@ -740,10 +746,15 @@ a:hover {
 
 @media (max-width: 768px) {
     body {
-        padding-top: 70px;
+        padding-top: 80px;
     }
     .navbar {
-        height: 70px;
+        height: 80px;
+    }
+    .logo-img {
+        height: 50px;
+        max-width: 200px;
+        padding: 8px 0;
     }
     h1 { font-size: 2.2rem; }
     h2 { font-size: 1.8rem; }
